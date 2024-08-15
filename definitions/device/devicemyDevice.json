@@ -1,0 +1,43 @@
+[
+  {
+    "name": "myDevice",
+    "hardware": "HW0",
+    "package": "myPackage",
+    "definition": {
+      "dies_in_package": [
+        "myDie_1"
+      ],
+      "is_dual_die": 0,
+      "pin_names": [
+        {
+          "Vdd": [
+            [
+              "myDie_1_Vdd",
+              "A",
+              "I"
+            ]
+          ]
+        },
+        {
+          "Gnd": [
+            [
+              "myDie_1_Gnd",
+              "A",
+              "I"
+            ]
+          ]
+        },
+        {
+          "Out": [
+            [
+              "myDie_1_Out",
+              "A",
+              "I"
+            ]
+          ]
+        }
+      ]
+    },
+    "is_enabled": true
+  }
+]

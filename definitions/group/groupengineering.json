@@ -1,0 +1,14 @@
+[
+  {
+    "name": "engineering",
+    "is_selected": true,
+    "is_standard": true,
+    "programs": [
+      "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow"
+    ],
+    "tests": [
+      "first_bench",
+      "bench_with_inputparameter"
+    ]
+  }
+]

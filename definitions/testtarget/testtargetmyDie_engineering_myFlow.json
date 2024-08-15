@@ -1,0 +1,22 @@
+[
+  {
+    "name": "myDie_engineering_myFlow",
+    "prog_name": "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow",
+    "hardware": "HW0",
+    "base": "PR",
+    "test": "first_bench",
+    "is_default": true,
+    "is_enabled": false,
+    "is_changed": false
+  },
+  {
+    "name": "myDie_engineering_myFlow",
+    "prog_name": "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow",
+    "hardware": "HW0",
+    "base": "PR",
+    "test": "bench_with_inputparameter",
+    "is_default": true,
+    "is_enabled": false,
+    "is_changed": false
+  }
+]

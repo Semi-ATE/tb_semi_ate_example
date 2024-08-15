@@ -1,0 +1,8 @@
+[
+  {
+    "name": "myPackage",
+    "leads": 3,
+    "is_naked_die": false,
+    "is_enabled": true
+  }
+]

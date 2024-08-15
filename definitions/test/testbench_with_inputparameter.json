@@ -1,0 +1,56 @@
+[
+  {
+    "name": "bench_with_inputparameter",
+    "hardware": "HW0",
+    "base": "PR",
+    "type": "custom",
+    "definition": {
+      "name": "bench_with_inputparameter",
+      "type": "custom",
+      "hardware": "HW0",
+      "base": "PR",
+      "groups": [
+        "engineering"
+      ],
+      "docstring": [
+        "This is a example with some input parameter, and how you get acess to the values."
+      ],
+      "input_parameters": {
+        "Temperature": {
+          "shmoo": true,
+          "min": -40.0,
+          "default": 25.0,
+          "max": 170.0,
+          "exp10": 0,
+          "unit": "\u00b0C",
+          "fmt": ".0f"
+        },
+        "vdd": {
+          "shmoo": true,
+          "min": 0.0,
+          "default": 0.8,
+          "max": 1.0,
+          "exp10": 0,
+          "unit": "\u02fd",
+          "fmt": ".3f"
+        }
+      },
+      "output_parameters": {
+        "Vout": {
+          "lsl": -Infinity,
+          "ltl": NaN,
+          "nom": 0.0,
+          "utl": NaN,
+          "usl": Infinity,
+          "exp10": 0,
+          "unit": "\u02fd",
+          "fmt": ".3f",
+          "mpr": false
+        }
+      },
+      "dependencies": {},
+      "patterns": []
+    },
+    "is_enabled": true
+  }
+]

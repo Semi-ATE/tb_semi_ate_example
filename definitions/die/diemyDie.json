@@ -1,0 +1,13 @@
+[
+  {
+    "name": "myDie",
+    "hardware": "HW0",
+    "maskset": "mymasksetup",
+    "quality": "Automotive",
+    "grade": "A",
+    "grade_reference": "",
+    "type": "ASSP",
+    "customer": "",
+    "is_enabled": true
+  }
+]

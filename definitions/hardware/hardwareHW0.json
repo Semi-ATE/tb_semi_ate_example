@@ -1,0 +1,60 @@
+[
+  {
+    "name": "HW0",
+    "definition": {
+      "PCB": {
+        "SingleSiteLoadboard": "",
+        "SingleSiteDIB": "",
+        "SingleSiteDIBisCable": false,
+        "SingleSiteProbeCard": "",
+        "MultiSiteLoadboard": "",
+        "MultiSiteDIB": "",
+        "MultiSiteDIBisCable": false,
+        "MultiSiteProbeCard": "",
+        "MaxParallelism": 1
+      },
+      "Parallelism": {
+        "PR": [
+          {
+            "next_ping_pong_id": 1,
+            "name": "PR1A",
+            "sites": [
+              [
+                0,
+                0
+              ]
+            ],
+            "configs": [
+              {
+                "id": 0,
+                "name": "All Parallel",
+                "stages": [
+                  [
+                    "0"
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "FT": []
+      },
+      "tester": "DummySingleTester",
+      "Actuator": {
+        "PR": [
+          "Temperature",
+          "Magnetic Field"
+        ],
+        "FT": [
+          "Temperature",
+          "Magnetic Field"
+        ]
+      },
+      "Instruments": [
+        "SemiCtrl.Control"
+      ],
+      "GPFunctions": []
+    },
+    "is_enabled": true
+  }
+]

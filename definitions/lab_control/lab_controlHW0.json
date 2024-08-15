@@ -1,0 +1,11 @@
+[
+  {
+    "name": "HW0",
+    "definition": {
+      "Actuator": {
+        "PR": {},
+        "FT": {}
+      }
+    }
+  }
+]
