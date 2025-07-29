@@ -15,8 +15,7 @@ __pycache__/*
 .DS_Store
 
 # Project files
-.spyproject/config/backups
-.spyproject/config/defaults
+.spyproject
 .ropeproject
 .project
 .pydevproject
