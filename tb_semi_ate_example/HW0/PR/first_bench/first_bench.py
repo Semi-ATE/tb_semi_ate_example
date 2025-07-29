@@ -1,7 +1,7 @@
 #!/usr/bin/env conda run -n ATE python
 # -*- coding: utf-8 -*-
 """
-By jung (jung@micronas.com)
+By semi-ate group
 """
 
 import os

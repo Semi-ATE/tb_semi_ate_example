@@ -1,7 +1,7 @@
 #!/usr/bin/env conda run -n ATE python
 # -*- coding: utf-8 -*-
 """
-By jung (jung@micronas.com)
+By  semi-ate group
 """
 
 import os
@@ -52,4 +52,3 @@ class bench_with_inputparameter(bench_with_inputparameter_BC):
         self.log_info(f'        -> Vout = {Vout} ')
 
         self.op.Vout.write(Vout)
-
