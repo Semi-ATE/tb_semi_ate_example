@@ -1,9 +1,10 @@
-"""General functions for the project hana."""
+"""General functions for the project cura."""
 
 from pylab_ml.base_instrument import logger
 from pylab_ml.common.common import str2num
 from time import sleep
 
+# das muss noch angepasst werden, bisher ist das nur ein copy von HANA
 
 def unsigned_data(f):
     """
