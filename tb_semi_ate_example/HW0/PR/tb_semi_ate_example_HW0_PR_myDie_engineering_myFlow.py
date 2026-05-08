@@ -20,7 +20,7 @@ from pathlib import Path
 parent_path = str(Path(__file__).joinpath('..', '..', '..').resolve())
 sys.path.append(parent_path)
 
-from HW0.FT import common
+from HW0.PR import common
 from HW0.HW0_auto_script import AutoScript
 
 if __name__ == '__main__':
@@ -46,21 +46,28 @@ if __name__ == '__main__':
     output_path.mkdir(exist_ok=True)
     harness_strategy = create_harness(params.harness_strategytype, mqtt.get_mqtt_client(), str(output_path.joinpath(program_name)))
     context = common.make_context(source, params, sequencer, auto_script, execution_strategy, mqtt, harness_strategy)
-    context.parent_path = str(Path(parent_path).parent)
     auto_script.set_context(context)
     auto_script.set_logger(context.get_logger())
     auto_script.before_start_setup()
 
     stil_tool = get_stil_tool()
-    if context.tester.run_pattern != -1:
+    if hasattr(context.tester, 'stilload') and context.tester.stilload is False:
+        pass
+    else:
         stil_tool._load_patterns({})
 
-    from HW0.FT.Instrumentinit.Instrumentinit import Instrumentinit
-    _ate_var_Instrumentinit_1 = Instrumentinit("Instrumentinit_1", 60000, 100, context, stil_tool)
-    _ate_var_Instrumentinit_1.ip.set_parameter('Temperature', 'static', 25, -40.0, 170.0, 0, context, True)
-    _ate_var_Instrumentinit_1.op.set_parameter('result', 101, 0.0, 0.0, 11, 2, 'Instrumentinit_1')
-    _ate_var_Instrumentinit_1.op.set_parameter('temperature', 102, -45.0, 170.0, 11, 2, 'Instrumentinit_1')
-    sequencer.register_test(_ate_var_Instrumentinit_1)
+    from HW0.PR.first_bench.first_bench import first_bench
+    _ate_var_first_bench_1 = first_bench("first_bench_1", 60000, 100, context, stil_tool)
+    _ate_var_first_bench_1.ip.set_parameter('Temperature', 'static', 25, -40.0, 170.0, 0, context, True)
+    _ate_var_first_bench_1.op.set_parameter('out', 101, nan, 5.0, 11, 2, 'first_bench_1')
+    _ate_var_first_bench_1.op.set_parameter('idd', 102, 7.0, 9.0, 11, 2, 'first_bench_1')
+    sequencer.register_test(_ate_var_first_bench_1)
+    from HW0.PR.bench_with_inputparameter.bench_with_inputparameter import bench_with_inputparameter
+    _ate_var_bench_with_inputparameter_1 = bench_with_inputparameter("bench_with_inputparameter_1", 60001, 200, context, stil_tool)
+    _ate_var_bench_with_inputparameter_1.ip.set_parameter('Temperature', 'static', 25, -40.0, 170.0, 0, context, True)
+    _ate_var_bench_with_inputparameter_1.ip.set_parameter('vdd', 'static', 0.800, 0.0, 1.0, 0, context, True)
+    _ate_var_bench_with_inputparameter_1.op.set_parameter('Vout', 201, nan, nan, 11, 2, 'bench_with_inputparameter_1')
+    sequencer.register_test(_ate_var_bench_with_inputparameter_1)
 
     # Start MQTT using the sequencer.
     # Note that "run()" will

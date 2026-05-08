@@ -1,20 +1,20 @@
 [
   {
-    "name": "Instrumentinit",
+    "name": "first_bench",
     "hardware": "HW0",
-    "base": "FT",
+    "base": "PR",
     "type": "custom",
     "definition": {
-      "name": "Instrumentinit",
+      "name": "first_bench",
       "type": "custom",
       "hardware": "HW0",
-      "base": "FT",
+      "base": "PR",
       "groups": [
-        "engineering",
-        "production"
+        "engineering"
       ],
       "docstring": [
-        "Init the necessary instruments to the default values"
+        "This is a example for a testbench.",
+        "It defines 2 Parameter: out and idd and write a value to each parameter"
       ],
       "input_parameters": {
         "Temperature": {
@@ -28,23 +28,23 @@
         }
       },
       "output_parameters": {
-        "result": {
+        "out": {
           "lsl": -Infinity,
-          "ltl": 0.0,
+          "ltl": NaN,
           "nom": 0.0,
-          "utl": 0.0,
+          "utl": 5.0,
           "usl": Infinity,
           "exp10": 0,
           "unit": "\u02fd",
           "fmt": ".3f",
           "mpr": false
         },
-        "temperature": {
-          "lsl": -Infinity,
-          "ltl": -45.0,
-          "nom": 0.0,
-          "utl": 170.0,
-          "usl": Infinity,
+        "idd": {
+          "lsl": 6.0,
+          "ltl": 7.0,
+          "nom": 8.0,
+          "utl": 9.0,
+          "usl": 10.0,
           "exp10": 0,
           "unit": "\u02fd",
           "fmt": ".3f",

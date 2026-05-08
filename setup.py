@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 from pathlib import Path
 
 setup(
-    name='CURA',
+    name='tb_semi_ate_example',
     version='0.0.0',
     description='Shared helpers used by the different ate-apps, i.e. master-app, control-app, etc.)',
     long_description='no long description',

@@ -15,14 +15,14 @@
     "debug": false,
     "geometry": [
       1,
-      44,
-      794,
-      507
+      40,
+      674,
+      485
     ],
     "sequencer": []
   },
   "result": {
-    "logfilename": "C:\\Users\\jung\\ATE\\packages\\envs\\semi-ate-5.5.1\\tb_semi_ate_example\\log\\20240815-174024_TestApp0.log"
+    "logfilename": "C:\\Users\\jung\\ATE\\packages\\envs\\workonIssues\\tb_semi_ate_example\\log\\20260508-152715_TestApp0.log"
   },
   "workaround": {
     "break": false

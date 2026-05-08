@@ -4,10 +4,11 @@
     "is_selected": true,
     "is_standard": true,
     "programs": [
-      "CURA_HW0_FT_myDevice_engineering_qdb"
+      "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow"
     ],
     "tests": [
-      "Instrumentinit"
+      "first_bench",
+      "bench_with_inputparameter"
     ]
   }
 ]

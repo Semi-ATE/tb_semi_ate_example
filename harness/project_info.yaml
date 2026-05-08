@@ -1,6 +1,0 @@
-PROJECT: CURA
-VERSION: '0103'
-USER: null
-REGISTERMASTER:
-  CURA:
-    '0103': cura_regs_0103.xls

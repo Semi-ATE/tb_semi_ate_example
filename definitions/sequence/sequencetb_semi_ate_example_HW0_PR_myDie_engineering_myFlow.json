@@ -1,0 +1,123 @@
+[
+  {
+    "owner_name": "HW0_PR_myDie_engineering",
+    "prog_name": "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow",
+    "test": "first_bench",
+    "test_order": 0,
+    "definition": {
+      "is_selected": true,
+      "description": "first_bench_1",
+      "name": "first_bench",
+      "sbin": "60000",
+      "test_num": 100,
+      "input_parameters": {
+        "Temperature": {
+          "value": "25",
+          "type": "static",
+          "content": "25",
+          "min": -40.0,
+          "max": 170.0,
+          "fmt": ".0f",
+          "unit": "\u00b0C",
+          "exp10": 0,
+          "default": "25",
+          "shmoo": true
+        }
+      },
+      "output_parameters": {
+        "out": {
+          "utl": 5.0,
+          "ltl": NaN,
+          "lsl": -Infinity,
+          "usl": Infinity,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "test_num": 101
+        },
+        "idd": {
+          "utl": 9.0,
+          "ltl": 7.0,
+          "lsl": 6.0,
+          "usl": 10.0,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "test_num": 102
+        }
+      }
+    }
+  },
+  {
+    "owner_name": "HW0_PR_myDie_engineering",
+    "prog_name": "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow",
+    "test": "bench_with_inputparameter",
+    "test_order": 1,
+    "definition": {
+      "is_selected": true,
+      "description": "bench_with_inputparameter_1",
+      "name": "bench_with_inputparameter",
+      "sbin": "60001",
+      "test_num": 200,
+      "input_parameters": {
+        "Temperature": {
+          "value": "25",
+          "type": "static",
+          "content": "25",
+          "min": -40.0,
+          "max": 170.0,
+          "fmt": ".0f",
+          "unit": "\u00b0C",
+          "exp10": 0,
+          "default": "25",
+          "shmoo": true
+        },
+        "vdd": {
+          "value": "0.800",
+          "type": "static",
+          "content": "0.800",
+          "min": 0.0,
+          "max": 1.0,
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "default": "0.800",
+          "shmoo": true
+        }
+      },
+      "output_parameters": {
+        "Vout": {
+          "utl": NaN,
+          "ltl": NaN,
+          "lsl": -Infinity,
+          "usl": Infinity,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "test_num": 201
+        }
+      }
+    }
+  }
+]

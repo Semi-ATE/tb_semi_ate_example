@@ -1,0 +1,12 @@
+{
+    "Name": "name",
+    "TestNr": "No",
+    "OutputName": "output_parameters.name",
+    "Speclimit Low": "",
+    "Testlimit Low": "output_parameters.ltl",
+    "TestLimit High": "output_parameters.utl",
+    "Speclimit High": "",
+    "Unit": "output_parameters.unit",
+    "Pattern Name": "patterns",
+    "Description": "docstring"
+}

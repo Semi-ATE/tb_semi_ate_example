@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-# HW0/FT/Instrumentinit/__init__.py
+# HW0/PR/first_bench/__init__.py
 
 Do **NOT** change anything in this module, as it is automatically generated thus your changes **WILL** be lost in time!
 
