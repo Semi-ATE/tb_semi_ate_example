@@ -46,12 +46,12 @@ class Context:
             sequencer.set_auto_script(self.auto_script)
 
             # Tester
-            testers = get_plugin_manager().hook.get_tester(tester_name="DummySingleTester", logger=self.logger)
-            assert len(testers) < 2, "The testertype DummySingleTester maps to multiple testers. Check installed plugins."
-            assert len(testers) == 1, "The testertype DummySingleTester is not available or installed on this machine."
+            testers = get_plugin_manager().hook.get_tester(tester_name="Semi_ATE File configuration Tester", logger=self.logger)
+            assert len(testers) < 2, "The testertype Semi_ATE File configuration Tester maps to multiple testers. Check installed plugins."
+            assert len(testers) == 1, "The testertype Semi_ATE File configuration Tester is not available or installed on this machine."
 
-            from dummy_tester.testers.dummy_single_tester import DummySingleTester
-            self.tester: DummySingleTester = testers[0]
+            from semi_ate_testers.testers.file_configuration_tester import FileConfigurationTester
+            self.tester: FileConfigurationTester = testers[0]
             sequencer.set_tester_instance(self.tester)
 
             from ate_test_app.actuators.Temperature.Temperature import TemperatureProxy
@@ -81,7 +81,18 @@ class Context:
         apply_configuration(instrument_dict)
 
         self.gp_dict = {}
+        gpfuncs = get_plugin_manager().hook.get_general_purpose_function(func_name="Pylab_Ml.Setup", logger=logger)
+        assert len(gpfuncs) < 2, "The functiontype Pylab_Ml.Setup maps to multiple functions. Check installed plugins."
+        assert len(gpfuncs) == 1, "The functiontype Pylab_Ml.Setup is not available or installed on this machine."
+        self.Pylab_Ml_Setup_instance = gpfuncs[0]
+        self.gp_dict['Pylab_Ml.Setup'] = self.Pylab_Ml_Setup_instance
+        gpfuncs = get_plugin_manager().hook.get_general_purpose_function(func_name="Pylab_Ml.Registermaster", logger=logger)
+        assert len(gpfuncs) < 2, "The functiontype Pylab_Ml.Registermaster maps to multiple functions. Check installed plugins."
+        assert len(gpfuncs) == 1, "The functiontype Pylab_Ml.Registermaster is not available or installed on this machine."
+        self.Pylab_Ml_Registermaster_instance = gpfuncs[0]
+        self.gp_dict['Pylab_Ml.Registermaster'] = self.Pylab_Ml_Registermaster_instance
 
+        apply_configuration(self.gp_dict)
 
     def get_logger(self) -> Logger:
         return self.logger

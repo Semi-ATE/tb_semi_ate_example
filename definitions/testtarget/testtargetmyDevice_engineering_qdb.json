@@ -1,0 +1,12 @@
+[
+  {
+    "name": "myDevice_engineering_qdb",
+    "prog_name": "CURA_HW0_FT_myDevice_engineering_qdb",
+    "hardware": "HW0",
+    "base": "FT",
+    "test": "Instrumentinit",
+    "is_default": true,
+    "is_enabled": false,
+    "is_changed": false
+  }
+]

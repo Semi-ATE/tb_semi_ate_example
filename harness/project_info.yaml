@@ -1,0 +1,16 @@
+PROJECT: HATB
+VERSION: '0504'
+USER: null
+REGISTERMASTER:
+  HANA:
+    '0504': hana_regs_0504.xls
+    '0601': hana_regs_0601.xls
+  HATB:
+    '0604': TBD
+    '0605': TBD
+    '0607': TBD
+  HAPB:
+    '020k': TBD
+  HACF:
+    '0604': TBD
+    '0901': TBD

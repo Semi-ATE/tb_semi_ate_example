@@ -1,0 +1,12 @@
+[
+  {
+    "name": "myDevice_production_qdb_flow",
+    "prog_name": "CURA_HW0_FT_myDevice_production_qdb_flow",
+    "hardware": "HW0",
+    "base": "FT",
+    "test": "Instrumentinit",
+    "is_default": true,
+    "is_enabled": false,
+    "is_changed": false
+  }
+]

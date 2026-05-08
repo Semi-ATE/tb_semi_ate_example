@@ -1,0 +1,27 @@
+[
+  {
+    "id": "486049ca-4ad8-11f1-84ee-2ccf67fc848d",
+    "prog_name": "CURA_HW0_FT_myDevice_production_qdb_flow",
+    "hardware": "HW0",
+    "base": "FT",
+    "target": "myDevice",
+    "usertext": "qdb_flow",
+    "sequencer_type": "Fixed Temperature",
+    "temperature": "25",
+    "owner_name": "HW0_FT_myDevice_production",
+    "prog_order": 1,
+    "is_valid": true,
+    "cache_type": "Pylab_Ml.Setup",
+    "caching_policy": "disable",
+    "test_ranges": [
+      100
+    ],
+    "instance_count": 1,
+    "execution_sequence": {
+      "FT1A": [
+        0
+      ]
+    },
+    "patterns": {}
+  }
+]

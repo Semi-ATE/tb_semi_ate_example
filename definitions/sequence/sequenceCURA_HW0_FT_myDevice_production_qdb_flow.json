@@ -1,0 +1,65 @@
+[
+  {
+    "owner_name": "HW0_FT_myDevice_production",
+    "prog_name": "CURA_HW0_FT_myDevice_production_qdb_flow",
+    "test": "Instrumentinit",
+    "test_order": 0,
+    "definition": {
+      "is_selected": true,
+      "description": "Instrumentinit_1",
+      "name": "Instrumentinit",
+      "sbin": "60000",
+      "test_num": 100,
+      "input_parameters": {
+        "Temperature": {
+          "value": "25",
+          "type": "static",
+          "content": "25",
+          "min": -40.0,
+          "max": 170.0,
+          "fmt": ".0f",
+          "unit": "\u00b0C",
+          "exp10": 0,
+          "default": "25",
+          "shmoo": true
+        }
+      },
+      "output_parameters": {
+        "result": {
+          "utl": 0.0,
+          "ltl": 0.0,
+          "lsl": -Infinity,
+          "usl": Infinity,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "test_num": 101
+        },
+        "temperature": {
+          "utl": 170.0,
+          "ltl": -45.0,
+          "lsl": -Infinity,
+          "usl": Infinity,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
+          "unit": "\u02fd",
+          "exp10": 0,
+          "test_num": 102
+        }
+      }
+    }
+  }
+]

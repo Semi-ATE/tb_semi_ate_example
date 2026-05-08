@@ -37,9 +37,31 @@
             ]
           }
         ],
-        "FT": []
+        "FT": [
+          {
+            "next_ping_pong_id": 1,
+            "name": "FT1A",
+            "sites": [
+              [
+                0,
+                0
+              ]
+            ],
+            "configs": [
+              {
+                "id": 0,
+                "name": "All Parallel",
+                "stages": [
+                  [
+                    "0"
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
       },
-      "tester": "DummySingleTester",
+      "tester": "Semi_ATE File configuration Tester",
       "Actuator": {
         "PR": [
           "Temperature",
@@ -53,7 +75,15 @@
       "Instruments": [
         "SemiCtrl.Control"
       ],
-      "GPFunctions": []
+      "GPFunctions": [
+        "Pylab_Ml.Setup",
+        "Pylab_Ml.Registermaster"
+      ],
+      "PatternImport": [
+        [],
+        [],
+        []
+      ]
     },
     "is_enabled": true
   }
