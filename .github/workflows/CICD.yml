@@ -1,0 +1,216 @@
+name: CI-CD
+
+on:
+  push:
+  release:
+  pull_request:
+
+jobs:
+  test:
+    name: Py${{ matrix.PYTHON_VERSION }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    env:
+      CI: 'true'
+      OS: 'linux'
+      PYTHON_VERSION: ${{ matrix.PYTHON_VERSION }}
+    strategy:
+      fail-fast: false
+      matrix:
+        PYTHON_VERSION: ['3.10']
+    steps:
+      - name: Checkout Pull Requests
+        uses: actions/checkout@v3
+
+      - name: Install Environment Dependencies
+        run: |
+          sudo apt-get update --fix-missing
+          sudo apt-get install -y libgit2-dev xvfb x11-utils libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 xdotool
+          sudo apt install graphviz
+          dot -V
+
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniconda-version: "latest"
+          python-version: ${{ matrix.PYTHON_VERSION }}
+          channel-priority: false    # "strict"
+          channels: "conda-forge"
+          mamba-version: "*"
+          show-channel-urls: true
+
+      - name: Setup environment
+        run: |
+          mamba install spyder=5.5.6
+          git clone https://github.com/Semi-ATE/Semi-ATE.git
+          cd Semi-ATE/src/ATE_sammy
+          pip install -e .
+          cd ../../..
+
+      - name: Create documentation
+        run: |
+          pwd
+          createFlow CURA 13--target Device1 --name my_Flow
+          mv *.pdf docu/.
+          mv *.png docu/.
+
+  generate_artifacts:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - name: Checkout Pull Requests
+        uses: actions/checkout@v3
+
+      - name: Install Environment Dependencies
+        shell: bash
+        run: |
+          sudo apt-get update --fix-missing
+          sudo apt install graphviz
+          dot -V
+
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniconda-version: "latest"
+          python-version: 3.9
+          channel-priority: false    # "strict"
+          channels: "conda-forge"
+          mamba-version: "*"
+          show-channel-urls: true
+
+      - name: Compute Version
+        id: computed_version
+        run: |
+          if [[ ${{ github.event.release.tag_name != '' }} != false ]]
+          then
+            echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+          else
+            echo ::set-output name=VERSION::$(echo "0.0.0")
+          fi
+
+      - name: Apply version
+        run: |
+          echo Version is ${{ steps.computed_version.outputs.VERSION }}
+          # TODO: add version
+
+      - uses: actions/checkout@v4
+      - name: Configure git
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Setup environment
+        run: |
+          pip install sphinx sphinx-rtd-theme myst-parser sphinx-markdown-tables
+          pip install --upgrade myst-parser
+          git clone https://github.com/Semi-ATE/Semi-ATE.git
+          cd Semi-ATE/src/ATE_sammy
+          pip install -e .
+          cd ../../..
+
+      - name: Create documentation
+        run: |
+          pwd
+          createFlow CURA 13 --target Device1 --name myFlow
+          mv *.pdf ./CURA13/doc/.
+          mv *.png ./CURA13/doc/.
+
+      - name: Show generated files (debug)
+        run: |
+          pwd
+          ls -la CURA13/doc
+
+      - name: Commit generated docs
+        run: |
+          pwd
+          git status --porcelain
+          git add CURA13/doc/*.pdf CURA13/doc/*.png
+          git commit -m "Add generated flows" || echo "No changes to commit"
+          git push origin HEAD:main
+        env:
+          GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
+          GIT_COMMITTER_NAME: "github-actions[bot]"
+
+# TODO:
+      # - name: Run Manifest Check
+      #   run: |
+      #     echo 'Check manifest of hatc'
+      #     check-manifest
+
+      # - name: Build Sphinx
+      #   run: |
+      #       sphinx-build -b html docs/source/ docs/build/html
+
+      # - name: Upload docs to Github artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     path: docs/build/html/*
+      #     name: docs-output
+
+      # - name: Deploy preview
+      #   if: github.event_name == 'pull_request'
+      #   uses: rossjrw/pr-preview-action@v1
+      #   with:
+      #     source-dir: ./docs/build/html
+      # - uses: JamesIves/github-pages-deploy-action@v4
+      #   if: github.event_name != 'pull_request'
+      #   with:
+      #     folder: ./docs/build/html
+      #     branch: docs
+      #     target-folder: .
+      #     clean-exclude: pr-preview
+
+      # - name: Generate distribution sdist files
+      #   run: |
+      #     cd scripts
+      #     python -m pip install build
+      #     python package_tool.py                       #TODO: pyproject.toml  missing!
+      #     cd ..
+      #     mkdir output
+      #     # find . -iname '*.tar.gz' -exec cp '{}' output \;
+
+      # - name: Check distribution files
+      #   run: |
+      #     twine check output/*
+
+      # - name: Upload Build Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: flow
+      #     path: |
+      #         ./CURA13/doc/.
+      #         ./CURA13/doc/.
+
+
+  publish:
+    if: ${{ github.event.release.tag_name != '' }}
+    needs: generate_artifacts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - name: Install
+        run: |
+          python -m pip install twine
+
+      - name: Get artifacts from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: output
+          path: |
+            output
+
+      - name: Extend Release Assets
+        uses: alexellis/upload-assets@0.3.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          asset_paths: '["output/*"]'
