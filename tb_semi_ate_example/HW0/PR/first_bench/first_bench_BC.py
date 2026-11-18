@@ -34,9 +34,12 @@ class first_bench_OP:
         self.out = OutputParameter('out', -inf, nan, 0.0, 5.0, inf, 0, False)
         self.out.set_format('.3f')
         self.out.set_unit('˽')
-        self.idd = OutputParameter('idd', 6.0, 7.0, 8.0, 9.0, 10.0, 0, False)
+        self.idd = OutputParameter('idd', 6.0, 7.0, 8.0, 9.0, 10.0, -3, True)
         self.idd.set_format('.3f')
-        self.idd.set_unit('˽')
+        self.idd.set_unit('A')
+        self.switch = OutputParameter('switch', -inf, 0.0, 0.0, 1.0, inf, 0, True)
+        self.switch.set_format('.3f')
+        self.switch.set_unit('˽')
 
     def set_parameter(self, name: str, id: int, ltl: float, utl: float, bin: int, bin_result: int, test_desc: str):
         output = getattr(self, f'{name}')
@@ -86,6 +89,10 @@ class first_bench_BC(DutTestCaseBase):
             test_result = self._select_testresult(test_result, current_result)
             test_bin = self._select_bin(test_bin, current_result)
             stdf_data.append(self.op.idd.generate_stdf_result_record(current_result[0], site_num))
+            current_result = self.op.switch.get_testresult()
+            test_result = self._select_testresult(test_result, current_result)
+            test_bin = self._select_bin(test_bin, current_result)
+            stdf_data.append(self.op.switch.generate_stdf_result_record(current_result[0], site_num))
         else:
             test_result = Result.Fail()
             test_bin = self.get_sbin()
@@ -93,6 +100,9 @@ class first_bench_BC(DutTestCaseBase):
             test_result = Result.Fail()
             test_bin = self.get_sbin()
             stdf_data.append(self.op.idd.generate_stdf_result_record(test_result, site_num))
+            test_result = Result.Fail()
+            test_bin = self.get_sbin()
+            stdf_data.append(self.op.switch.generate_stdf_result_record(test_result, site_num))
 
         return (test_result, test_bin, stdf_data)
 
@@ -100,6 +110,7 @@ class first_bench_BC(DutTestCaseBase):
         stdf_data = []
         stdf_data.append(self.op.out.generate_tsr_record(head_num, site_num, self.get_average_test_execution_time()))
         stdf_data.append(self.op.idd.generate_tsr_record(head_num, site_num, self.get_average_test_execution_time()))
+        stdf_data.append(self.op.switch.generate_tsr_record(head_num, site_num, self.get_average_test_execution_time()))
 
         return stdf_data
 

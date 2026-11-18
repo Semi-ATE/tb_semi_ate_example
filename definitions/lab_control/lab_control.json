@@ -1,5 +1,5 @@
 {
-  "version": "0.0.18",
+  "version": "0.0.21",
   "logging": {
     "debug": false,
     "info": true,
@@ -11,18 +11,25 @@
     "startauto": true,
     "stopauto": false,
     "stoponfail": false,
-    "progname": "",
+    "progname": "tb_semi_ate_example_HW0_PR_myDie_engineering_myFlow",
     "debug": false,
     "geometry": [
-      1,
-      40,
-      674,
-      485
+      3,
+      44,
+      1389,
+      1116
     ],
-    "sequencer": []
+    "sequencer": [
+      [
+        false,
+        "Temperature",
+        "",
+        0
+      ]
+    ]
   },
   "result": {
-    "logfilename": "C:\\Users\\jung\\ATE\\packages\\envs\\workonIssues\\tb_semi_ate_example\\log\\20260508-152715_TestApp0.log"
+    "logfilename": ""
   },
   "workaround": {
     "break": false

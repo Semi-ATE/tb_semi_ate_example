@@ -55,9 +55,26 @@
             "description": ""
           },
           "fmt": ".3f",
+          "unit": "A",
+          "exp10": -3,
+          "test_num": 102
+        },
+        "switch": {
+          "utl": 1.0,
+          "ltl": 0.0,
+          "lsl": -Infinity,
+          "usl": Infinity,
+          "Binning": {
+            "bin": 11,
+            "result": 2,
+            "name": "Bin_11",
+            "group": "Contact Fail",
+            "description": ""
+          },
+          "fmt": ".3f",
           "unit": "\u02fd",
           "exp10": 0,
-          "test_num": 102
+          "test_num": 103
         }
       }
     }

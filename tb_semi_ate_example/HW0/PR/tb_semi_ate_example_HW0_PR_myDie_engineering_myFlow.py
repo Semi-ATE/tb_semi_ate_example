@@ -46,14 +46,13 @@ if __name__ == '__main__':
     output_path.mkdir(exist_ok=True)
     harness_strategy = create_harness(params.harness_strategytype, mqtt.get_mqtt_client(), str(output_path.joinpath(program_name)))
     context = common.make_context(source, params, sequencer, auto_script, execution_strategy, mqtt, harness_strategy)
+    context.parent_path = str(Path(parent_path).parent)
     auto_script.set_context(context)
     auto_script.set_logger(context.get_logger())
     auto_script.before_start_setup()
 
     stil_tool = get_stil_tool()
-    if hasattr(context.tester, 'stilload') and context.tester.stilload is False:
-        pass
-    else:
+    if context.tester.run_pattern != -1:
         stil_tool._load_patterns({})
 
     from HW0.PR.first_bench.first_bench import first_bench
@@ -61,6 +60,7 @@ if __name__ == '__main__':
     _ate_var_first_bench_1.ip.set_parameter('Temperature', 'static', 25, -40.0, 170.0, 0, context, True)
     _ate_var_first_bench_1.op.set_parameter('out', 101, nan, 5.0, 11, 2, 'first_bench_1')
     _ate_var_first_bench_1.op.set_parameter('idd', 102, 7.0, 9.0, 11, 2, 'first_bench_1')
+    _ate_var_first_bench_1.op.set_parameter('switch', 103, 0.0, 1.0, 11, 2, 'first_bench_1')
     sequencer.register_test(_ate_var_first_bench_1)
     from HW0.PR.bench_with_inputparameter.bench_with_inputparameter import bench_with_inputparameter
     _ate_var_bench_with_inputparameter_1 = bench_with_inputparameter("bench_with_inputparameter_1", 60001, 200, context, stil_tool)

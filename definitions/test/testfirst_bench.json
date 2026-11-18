@@ -14,7 +14,11 @@
       ],
       "docstring": [
         "This is a example for a testbench.",
-        "It defines 2 Parameter: out and idd and write a value to each parameter"
+        "It defines 3 Parameter: out and idd.",
+        "out = STDF-PTR-format (A single measurement is stored in a variable)",
+        "idd = mpr-format (Multiple measurements are stored in a variable)",
+        "switch = mpr-format",
+        ""
       ],
       "input_parameters": {
         "Temperature": {
@@ -45,10 +49,21 @@
           "nom": 8.0,
           "utl": 9.0,
           "usl": 10.0,
+          "exp10": -3,
+          "unit": "A",
+          "fmt": ".3f",
+          "mpr": true
+        },
+        "switch": {
+          "lsl": -Infinity,
+          "ltl": 0.0,
+          "nom": 0.0,
+          "utl": 1.0,
+          "usl": Infinity,
           "exp10": 0,
           "unit": "\u02fd",
           "fmt": ".3f",
-          "mpr": false
+          "mpr": true
         }
       },
       "dependencies": {},
