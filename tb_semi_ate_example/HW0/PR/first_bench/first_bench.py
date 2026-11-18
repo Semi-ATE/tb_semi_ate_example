@@ -6,6 +6,7 @@ By semi-ate group
 
 import os
 import sys
+import random
 from pathlib import Path
 test_path = os.path.abspath(Path(__file__).joinpath('..'))
 sys.path.append(test_path)
@@ -34,7 +35,8 @@ class first_bench(first_bench_BC):
     Parameter         | MPR |   LSL | (LTL) |  Nom  | (UTL) | USL    | Unit | fmt
     ------------------+-----+-------+-------+-------+-------+--------+------+----
     op.out            | No  |    -∞ |  (-∞) | 0.000 | 5.000 | +∞     | ˽    | .3f
-    op.idd            | No  | 6.000 | 7.000 | 8.000 | 9.000 | 10.000 | ˽    | .3f
+    op.idd            | Yes | 6.000 | 7.000 | 8.000 | 9.000 | 10.000 | A    | .3f
+    op.switch         | Yes |    -∞ | 0.000 | 0.000 | 1.000 | +∞     | ˽    | .3f
     </do_not_touch>
 
     '''
@@ -46,5 +48,13 @@ class first_bench(first_bench_BC):
 
         self.log_info('running first test')
 
-        self.op.out.default()       # write the nominal value
-        self.op.idd.write(8.0)      # write the measured value, if the value outside the Limits, than the test will faile
+        for cnt in range (100):
+            if 50<cnt < 70:
+                idd = random.uniform(8.3, 8.8)
+                self.op.switch.write(1)
+            else:
+                idd = random.uniform(7.2, 8.2)
+                self.op.switch.write(0)
+            self.op.idd.write(idd)                                          # write the measured value, if the value outside the Limits, than the test will failed
+
+        self.op.out.default()        # write the nominal value, if LTL  or UTL is inf than the default value are also inf!
